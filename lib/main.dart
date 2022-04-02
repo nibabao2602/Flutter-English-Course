@@ -1,3 +1,4 @@
+import 'package:eduhub_mobile/screens/Welcome/welcome.dart';
 import 'package:eduhub_mobile/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: WelcomePage(),
     );
   }
 }
