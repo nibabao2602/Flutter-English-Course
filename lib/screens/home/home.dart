@@ -1,13 +1,23 @@
 import 'package:eduhub_mobile/constants/colors.dart';
 import 'package:eduhub_mobile/models/course.dart';
 import 'package:eduhub_mobile/screens/home/widget/active_course.dart';
+import 'package:eduhub_mobile/screens/home/widget/bottom_navigation_bar.dart';
 import 'package:eduhub_mobile/screens/home/widget/course_item.dart';
 import 'package:eduhub_mobile/screens/home/widget/emoji_text.dart';
 import 'package:eduhub_mobile/screens/home/widget/feature_course.dart';
 import 'package:eduhub_mobile/screens/home/widget/search_input.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,37 +34,6 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: kBackground,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: [
-            BottomNavigationBarItem(
-                label: 'home',
-                icon: Container(
-                  padding: EdgeInsets.only(bottom: 5),
-                  decoration: BoxDecoration(
-                      border:
-                          Border(bottom: BorderSide(color: kAccent, width: 2))),
-                  child: Text(
-                    'home',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                )),
-            BottomNavigationBarItem(
-              label: 'calendar',
-              icon: Icon(Icons.calendar_month, size: 20),
-            ),
-            BottomNavigationBarItem(
-              label: 'bookmark',
-              icon: Icon(Icons.bookmark, size: 20),
-            ),
-            BottomNavigationBarItem(
-              label: 'user',
-              icon: Icon(Icons.account_circle_outlined, size: 20),
-            ),
-          ]),
     );
   }
 

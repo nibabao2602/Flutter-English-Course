@@ -36,6 +36,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   percent_indicator: ^3.4.0
   flutter_svg: ^1.0.3
+  firebase_core: ^1.14.0
+  firebase_auth: ^3.3.12
+  email_validator: ^2.0.1
+  # firebase_core: ^1.14.0
+  # cloud_firestore: ^3.1.11
 
 dev_dependencies:
   flutter_test:
@@ -47,6 +52,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

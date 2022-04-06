@@ -1,17 +1,36 @@
+import 'dart:js';
+
+import 'package:eduhub_mobile/constants/colors.dart';
 import 'package:eduhub_mobile/icons/already_have_an_account_acheck.dart';
 import 'package:eduhub_mobile/icons/rounded_button.dart';
 import 'package:eduhub_mobile/icons/rounded_input_field.dart';
 import 'package:eduhub_mobile/icons/rounded_password_field.dart';
+import 'package:eduhub_mobile/icons/text_field_container.dart';
+import 'package:eduhub_mobile/main.dart';
 import 'package:eduhub_mobile/screens/Login/widget/background.dart';
 import 'package:eduhub_mobile/screens/Signup/signup.dart';
+import 'package:eduhub_mobile/screens/Welcome/welcome.dart';
 import 'package:eduhub_mobile/screens/home/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Body extends StatelessWidget {
-  const Body({
-    Key? key,
-  }) : super(key: key);
+class BodyLogin extends StatefulWidget {
+  const BodyLogin({Key? key}) : super(key: key);
+
+  @override
+  State<BodyLogin> createState() => _BodyLoginState();
+}
+
+class _BodyLoginState extends State<BodyLogin> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,26 +50,39 @@ class Body extends StatelessWidget {
               height: size.height * 0.35,
             ),
             SizedBox(height: size.height * 0.03),
-            RoundedInputField(
-              hintText: "Your Email",
-              onChanged: (value) {},
-            ),
-            RoundedPasswordField(
-              onChanged: (value) {},
-            ),
-            RoundedButton(
-              text: "LOGIN",
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return HomePage();
-                    },
+            TextFieldContainer(
+              child: TextField(
+                controller: emailController,
+                cursorColor: kPrimaryButton,
+                decoration: InputDecoration(
+                  icon: Icon(
+                    Icons.person,
+                    color: kPrimaryButton,
                   ),
-                );
-              },
+                  hintText: "Your Email",
+                  border: InputBorder.none,
+                ),
+              ),
             ),
+            TextFieldContainer(
+                child: TextField(
+              controller: passwordController,
+              obscureText: true,
+              cursorColor: kPrimaryButton,
+              decoration: InputDecoration(
+                hintText: "Password",
+                icon: Icon(
+                  Icons.lock,
+                  color: kPrimaryButton,
+                ),
+                suffixIcon: Icon(
+                  Icons.visibility,
+                  color: kPrimary,
+                ),
+                border: InputBorder.none,
+              ),
+            )),
+            RoundedButton(text: "LOGIN", press: signIn),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(
               press: () {
@@ -68,5 +100,24 @@ class Body extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future signIn() async {
+    showDialog(
+        context: this.context,
+        barrierDismissible: false,
+        builder: (context) => Center(
+              child: CircularProgressIndicator(),
+            ));
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
