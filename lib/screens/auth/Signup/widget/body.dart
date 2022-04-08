@@ -1,18 +1,17 @@
 import 'package:eduhub_mobile/constants/colors.dart';
-import 'package:eduhub_mobile/icons/already_have_an_account_acheck.dart';
+import 'package:eduhub_mobile/screens/auth/Login/widget/already_have_an_account_acheck.dart';
 import 'package:eduhub_mobile/icons/rounded_button.dart';
-import 'package:eduhub_mobile/icons/rounded_input_field.dart';
-import 'package:eduhub_mobile/icons/rounded_password_field.dart';
 import 'package:eduhub_mobile/icons/text_field_container.dart';
 import 'package:eduhub_mobile/main.dart';
-import 'package:eduhub_mobile/screens/Login/login.dart';
-import 'package:eduhub_mobile/screens/Signup/widget/background.dart';
-import 'package:eduhub_mobile/screens/Signup/widget/or_divider.dart';
-import 'package:eduhub_mobile/screens/Signup/widget/social_icon.dart';
+import 'package:eduhub_mobile/screens/auth/Signup/widget/background.dart';
+import 'package:eduhub_mobile/screens/auth/Signup/widget/or_divider.dart';
+import 'package:eduhub_mobile/screens/auth/Signup/widget/social_icon.dart';
+import 'package:eduhub_mobile/utils.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../Login/login.dart';
 
 class BodySignUp extends StatefulWidget {
   const BodySignUp({Key? key}) : super(key: key);
@@ -151,6 +150,8 @@ class _BodySignUpState extends State<BodySignUp> {
       );
     } on FirebaseAuthException catch (e) {
       print(e);
+
+      Utils.showSnackBar(e.message);
     }
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);

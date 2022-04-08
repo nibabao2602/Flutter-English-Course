@@ -1,6 +1,6 @@
-import 'package:eduhub_mobile/screens/Welcome/welcome.dart';
+import 'package:eduhub_mobile/screens/auth/Welcome/welcome.dart';
 import 'package:eduhub_mobile/screens/dashboard/dashboard.dart';
-import 'package:eduhub_mobile/screens/home/home.dart';
+import 'package:eduhub_mobile/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +34,7 @@ class _MyAppState extends State<MyApp> {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MaterialApp(
+        scaffoldMessengerKey: Utils.messengerKey,
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         title: "EduHub - Mobile version",

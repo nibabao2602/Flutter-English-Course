@@ -1,19 +1,19 @@
 import 'dart:js';
 
 import 'package:eduhub_mobile/constants/colors.dart';
-import 'package:eduhub_mobile/icons/already_have_an_account_acheck.dart';
+import 'package:eduhub_mobile/screens/auth/ForgotPass/forgotPass.dart';
+import 'package:eduhub_mobile/screens/auth/Login/widget/already_have_an_account_acheck.dart';
 import 'package:eduhub_mobile/icons/rounded_button.dart';
-import 'package:eduhub_mobile/icons/rounded_input_field.dart';
-import 'package:eduhub_mobile/icons/rounded_password_field.dart';
 import 'package:eduhub_mobile/icons/text_field_container.dart';
 import 'package:eduhub_mobile/main.dart';
-import 'package:eduhub_mobile/screens/Login/widget/background.dart';
-import 'package:eduhub_mobile/screens/Signup/signup.dart';
-import 'package:eduhub_mobile/screens/Welcome/welcome.dart';
-import 'package:eduhub_mobile/screens/home/home.dart';
+import 'package:eduhub_mobile/screens/auth/Login/widget/background.dart';
+import 'package:eduhub_mobile/screens/auth/Signup/signup.dart';
+import 'package:eduhub_mobile/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import 'forgot_password_check.dart';
 
 class BodyLogin extends StatefulWidget {
   const BodyLogin({Key? key}) : super(key: key);
@@ -82,6 +82,18 @@ class _BodyLoginState extends State<BodyLogin> {
                 border: InputBorder.none,
               ),
             )),
+            ForgotPasswordCheck(
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ForgotPassPage();
+                    },
+                  ),
+                );
+              },
+            ),
             RoundedButton(text: "LOGIN", press: signIn),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(
@@ -116,6 +128,8 @@ class _BodyLoginState extends State<BodyLogin> {
       );
     } on FirebaseAuthException catch (e) {
       print(e);
+
+      Utils.showSnackBar(e.message);
     }
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);

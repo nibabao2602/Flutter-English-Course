@@ -1,16 +1,10 @@
-import 'package:eduhub_mobile/constants/colors.dart';
-import 'package:eduhub_mobile/models/course.dart';
-import 'package:eduhub_mobile/screens/Login/login.dart';
-import 'package:eduhub_mobile/screens/Signup/signup.dart';
-import 'package:eduhub_mobile/screens/Welcome/welcome.dart';
-import 'package:eduhub_mobile/screens/home/home.dart';
-import 'package:eduhub_mobile/screens/home/widget/active_course.dart';
-import 'package:eduhub_mobile/screens/home/widget/bottom_navigation_bar.dart';
-import 'package:eduhub_mobile/screens/home/widget/course_item.dart';
-import 'package:eduhub_mobile/screens/home/widget/emoji_text.dart';
-import 'package:eduhub_mobile/screens/home/widget/feature_course.dart';
-import 'package:eduhub_mobile/screens/home/widget/search_input.dart';
 import 'package:flutter/material.dart';
+
+import '../../constants/colors.dart';
+import '../auth/Login/login.dart';
+import '../auth/Signup/signup.dart';
+import '../auth/Welcome/welcome.dart';
+import '../home/home.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({Key? key}) : super(key: key);

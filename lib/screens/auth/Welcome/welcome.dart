@@ -1,4 +1,4 @@
-import 'package:eduhub_mobile/screens/Welcome/widget/body.dart';
+import 'package:eduhub_mobile/screens/auth/Welcome/widget/body.dart';
 import 'package:flutter/material.dart';
 
 class WelcomePage extends StatelessWidget {

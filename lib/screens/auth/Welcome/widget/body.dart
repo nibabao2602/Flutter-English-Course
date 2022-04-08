@@ -1,10 +1,10 @@
 import 'package:eduhub_mobile/constants/colors.dart';
 import 'package:eduhub_mobile/icons/rounded_button.dart';
-import 'package:eduhub_mobile/screens/Login/login.dart';
-import 'package:eduhub_mobile/screens/Signup/signup.dart';
-import 'package:eduhub_mobile/screens/Welcome/widget/background.dart';
+import 'package:eduhub_mobile/screens/auth/Welcome/widget/background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../Login/login.dart';
+import '../../Signup/signup.dart';
 
 class Body extends StatelessWidget {
   @override
