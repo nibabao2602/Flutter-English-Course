@@ -6,7 +6,7 @@ import 'package:eduhub_mobile/main.dart';
 import 'package:eduhub_mobile/screens/auth/Signup/widget/background.dart';
 import 'package:eduhub_mobile/screens/auth/Signup/widget/or_divider.dart';
 import 'package:eduhub_mobile/screens/auth/Signup/widget/social_icon.dart';
-import 'package:eduhub_mobile/utils.dart';
+import 'package:eduhub_mobile/utils/snackBar.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
