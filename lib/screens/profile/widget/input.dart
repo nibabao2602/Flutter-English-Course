@@ -4,6 +4,7 @@ class InputWidget extends StatefulWidget {
   final String label;
   final String text;
   final int maxLines;
+  final bool isEnabled;
   final ValueChanged<String> onChanged;
 
   const InputWidget({
@@ -12,6 +13,7 @@ class InputWidget extends StatefulWidget {
     required this.text,
     required this.onChanged,
     this.maxLines = 1,
+    this.isEnabled = true,
   }) : super(key: key);
 
   @override
@@ -44,10 +46,12 @@ class _InputWidgetState extends State<InputWidget> {
         ),
         TextField(
           controller: controller,
+          enabled: widget.isEnabled,
           maxLines: widget.maxLines,
           decoration: InputDecoration(
               border:
                   OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
+          onChanged: widget.onChanged,
         )
       ],
     );

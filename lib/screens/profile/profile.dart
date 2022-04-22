@@ -10,7 +10,6 @@ import 'package:eduhub_mobile/utils/snackBar.dart';
 import 'package:eduhub_mobile/utils/user_preference.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:eduhub_mobile/models/user.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -22,17 +21,19 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    final UserType user = UserPreferences.myUser;
+    // final CurrentUser user = CurrentUser.getUserFromFirebase();
+    final user = UserPreferences.getUser();
     return Scaffold(
       appBar: buildAppBar(context),
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: [
           AvatarWidget(
-            imagePath: user.imagePath,
-            onClick: () {
-              Navigator.of(context).push(
+            imagePath: user.photoURL.toString(),
+            onClick: () async {
+              await Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => EditProfilePage()));
+              setState(() {});
             },
             isEdit: false,
           ),
@@ -49,6 +50,14 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           ProfileButton(
               text: "Đổi mật khẩu",
+              icon: Icon(
+                Icons.edit,
+                size: 18,
+                color: kAccent,
+              ),
+              onClick: () {}),
+          ProfileButton(
+              text: "Cập nhật Email",
               icon: Icon(
                 Icons.edit,
                 size: 18,

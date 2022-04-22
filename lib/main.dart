@@ -1,6 +1,7 @@
 import 'package:eduhub_mobile/screens/auth/Welcome/welcome.dart';
 import 'package:eduhub_mobile/screens/dashboard/dashboard.dart';
 import 'package:eduhub_mobile/utils/snackBar.dart';
+import 'package:eduhub_mobile/utils/user_preference.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,8 @@ void main() async {
       projectId: "eduhub-mobile",
     ),
   );
+
+  await UserPreferences.init();
   runApp(MyApp());
 }
 

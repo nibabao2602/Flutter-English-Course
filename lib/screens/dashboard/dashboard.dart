@@ -37,18 +37,18 @@ class _DashboardPageState extends State<DashboardPage> {
           iconSize: 60,
           items: [
             BottomNavigationBarItem(
-                label: 'home', icon: Icon(Icons.home, size: 20)),
+                label: 'Home', icon: Icon(Icons.home, size: 20)),
             BottomNavigationBarItem(
-              label: 'calendar',
-              icon: Icon(Icons.calendar_month, size: 20),
+              label: 'History',
+              icon: Icon(Icons.chrome_reader_mode_rounded, size: 20),
             ),
             BottomNavigationBarItem(
-              label: 'bookmark',
-              icon: Icon(Icons.bookmark, size: 20),
+              label: 'Favorite',
+              icon: Icon(Icons.favorite, size: 20),
             ),
             BottomNavigationBarItem(
-              label: 'user',
-              icon: Icon(Icons.account_circle_outlined, size: 20),
+              label: 'User',
+              icon: Icon(Icons.person, size: 20),
             ),
           ]),
     );

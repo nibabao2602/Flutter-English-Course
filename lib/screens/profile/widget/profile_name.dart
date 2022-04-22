@@ -1,8 +1,9 @@
-import 'package:eduhub_mobile/models/user.dart';
+import 'package:eduhub_mobile/models/currentUserData.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ProfileName extends StatelessWidget {
-  final UserType user;
+  final User user;
   const ProfileName({Key? key, required this.user}) : super(key: key);
 
   @override
@@ -10,14 +11,14 @@ class ProfileName extends StatelessWidget {
     return Column(
       children: [
         Text(
-          user.name,
+          user.displayName.toString(),
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
         ),
         SizedBox(
           height: 4,
         ),
         Text(
-          user.email,
+          user.email.toString(),
           style: TextStyle(color: Colors.grey),
         )
       ],
