@@ -1,38 +1,39 @@
-import 'package:eduhub_mobile/utils/snackBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class CurrentUser {
-  final String uid;
+  final User user;
   final String photoURL;
   final String displayName;
   final String email;
 
   const CurrentUser({
-    required this.uid,
+    required this.user,
     required this.photoURL,
     required this.displayName,
     required this.email,
   });
 
-CurrentUser copy({
+  CurrentUser copy({
+    User? user,
     String? photoURL,
     String? displayName,
     String? email,
   }) =>
       CurrentUser(
-        uid: uid,
-          photoURL: photoURL ?? this.photoURL,
-          displayName: displayName ?? this.displayName,
-          email: email ?? this.email,);
+        user: this.user,
+        photoURL: photoURL ?? this.photoURL,
+        displayName: displayName ?? this.displayName,
+        email: email ?? this.email,
+      );
 
   static CurrentUser fromJson(Map<String, dynamic> json) => CurrentUser(
-    uid: json['uid'],
+      user: json['user'],
       photoURL: json['photoURL'],
       displayName: json['displayName'],
       email: json['email']);
 
   Map<String, dynamic> toJson() => {
-    'uid': uid,
+        'user': user,
         'photoURL': photoURL,
         'displayName': displayName,
         'email': email,

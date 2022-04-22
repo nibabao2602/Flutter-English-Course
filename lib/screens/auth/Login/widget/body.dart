@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:eduhub_mobile/constants/colors.dart';
 import 'package:eduhub_mobile/screens/auth/ForgotPass/forgotPass.dart';
 import 'package:eduhub_mobile/screens/auth/Login/widget/already_have_an_account_acheck.dart';
