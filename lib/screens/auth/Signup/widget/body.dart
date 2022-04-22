@@ -6,7 +6,7 @@ import 'package:eduhub_mobile/main.dart';
 import 'package:eduhub_mobile/screens/auth/Signup/widget/background.dart';
 import 'package:eduhub_mobile/screens/auth/Signup/widget/or_divider.dart';
 import 'package:eduhub_mobile/screens/auth/Signup/widget/social_icon.dart';
-import 'package:eduhub_mobile/utils.dart';
+import 'package:eduhub_mobile/utils/snackBar.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +23,7 @@ class BodySignUp extends StatefulWidget {
 class _BodySignUpState extends State<BodySignUp> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final displayNameController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   @override
   void dispose() {
@@ -90,6 +91,23 @@ class _BodySignUpState extends State<BodySignUp> {
                     ? "Enter min 6 characters"
                     : null,
               )),
+              TextFieldContainer(
+                  child: TextFormField(
+                controller: displayNameController,
+                cursorColor: kPrimaryButton,
+                decoration: InputDecoration(
+                  hintText: "Display Name",
+                  icon: Icon(
+                    Icons.lock,
+                    color: kPrimaryButton,
+                  ),
+                  suffixIcon: Icon(
+                    Icons.visibility,
+                    color: kPrimary,
+                  ),
+                  border: InputBorder.none,
+                ),
+              )),
               RoundedButton(
                 text: "SIGNUP",
                 press: signUp,
@@ -148,6 +166,12 @@ class _BodySignUpState extends State<BodySignUp> {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
+      final user = FirebaseAuth.instance.currentUser!;
+      final displayName = "123";
+
+      if (FirebaseAuth.instance.currentUser! != null) {
+        user.updateDisplayName(displayName);
+      }
     } on FirebaseAuthException catch (e) {
       print(e);
 

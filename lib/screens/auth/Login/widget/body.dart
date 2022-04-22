@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:eduhub_mobile/constants/colors.dart';
 import 'package:eduhub_mobile/screens/auth/ForgotPass/forgotPass.dart';
 import 'package:eduhub_mobile/screens/auth/Login/widget/already_have_an_account_acheck.dart';
@@ -8,7 +6,7 @@ import 'package:eduhub_mobile/icons/text_field_container.dart';
 import 'package:eduhub_mobile/main.dart';
 import 'package:eduhub_mobile/screens/auth/Login/widget/background.dart';
 import 'package:eduhub_mobile/screens/auth/Signup/signup.dart';
-import 'package:eduhub_mobile/utils.dart';
+import 'package:eduhub_mobile/utils/snackBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -126,12 +124,10 @@ class _BodyLoginState extends State<BodyLogin> {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
+      navigatorKey.currentState!.popUntil((route) => route.isFirst);
     } on FirebaseAuthException catch (e) {
       print(e);
-
       Utils.showSnackBar(e.message);
     }
-
-    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }
